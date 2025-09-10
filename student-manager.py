@@ -3,29 +3,7 @@
 students = []
 next_id = 1
 
-def print_menu():
-    print("\n=== Student Manager ===")
-    print("1. Add Student")
-    print("2. View student")
-    print("3. Update student")
-    print("4. Delete student")
-    print("q. Quit")
 
-def main():
-    while True:
-        print_menu()
-        choice = input("choose an option: ").strip().lower()
-
-        if choice == "q":
-            print("Exiting Student manager. Goodbye!")
-            break
-        handle_choice(choice)
-#        else:
-#            print(f"option '{choice}' not implemented yet.")
-
-
-if __name__ == "__main__":
-    main()
 
 def _read_int(prompt):
     while True:
@@ -45,8 +23,35 @@ def add_student():
     print(f"Added student #{next_id}: {name}")
     next_id +=1
 
+def print_menu():
+    print("\n=== Student Manager ===")
+    print("1. Add Student")
+    print("2. View student")
+    print("3. Update student")
+    print("4. Delete student")
+    print("q. Quit")
+
 def handle_choice(choice):
     if choice == "1":
         add_student()
     else:
         print(f"option '{choice}' not implemented yet")
+
+def main():
+    while True:
+        print_menu()
+        choice = input("choose an option: ").strip().lower()
+
+        if choice == "q":
+            print("Exiting Student manager. Goodbye!")
+            break
+        handle_choice(choice)
+#        else:
+#            print(f"option '{choice}' not implemented yet.")
+
+
+if __name__ == "__main__":
+    main()
+
+
+
