@@ -77,6 +77,23 @@ def update_student():
 
     print("Updated.")
 
+
+def delete_student():
+
+    raw = input("Enter ID to delete: ").strip()
+    if not raw.isdigit():
+        print("Invalid ID.")
+        return
+    target_id = int(raw)
+
+    idx = find_index_by_id(target_id)  # uses the finder you added earlier
+    if idx == -1:
+        print("ID not found.")
+        return
+
+    removed = students.pop(idx)  # remove by index
+    print(f"Deleted #{removed['id']} ({removed['name']}).")
+
 def print_menu():
     print("\n=== Student Manager ===")
     print("1. Add Student")
@@ -93,7 +110,7 @@ def handle_choice(choice):
     elif choice == "3":
         update_student()
     elif choice == "4":
-        print("TODO: Delete student")
+        delete_student()
     else:
         print("Invalid choice")
 
