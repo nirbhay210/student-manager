@@ -32,7 +32,50 @@ def view_students():
     for s in students:
         print(f"{s['id']:<3} | {s['name']:<20} | {s['age']:<3} | {s['grade']}")
 
+def find_index_by_id(target_id: int) -> int:
+    """Return list index for student with id==target_id, else -1."""
+    for i, s in enumerate(students):
+        if s["id"] == target_id:
+            return i
+    return -1
 
+
+def update_student():
+    """Edit fields; press Enter to keep existing value."""
+    # ask which ID to edit
+    raw = input("Enter ID to update: ").strip()
+    if not raw.isdigit():
+        print("Invalid ID.")
+        return
+    target_id = int(raw)
+
+    idx = find_index_by_id(target_id)
+    if idx == -1:
+        print("ID not found.")
+        return
+
+    current = students[idx]
+    print(f"Editing #{current['id']} (press Enter to keep current value)")
+
+
+    new_name = input(f"Name [{current['name']}]: ").strip()
+    if new_name:
+        current["name"] = new_name
+
+
+    raw_age = input(f"Age [{current['age']}]: ").strip()
+    if raw_age:
+        if raw_age.isdigit():
+            current["age"] = int(raw_age)
+        else:
+            print("Invalid age; keeping old value.")
+
+    # Grade
+    new_grade = input(f"Grade [{current['grade']}]: ").strip()
+    if new_grade:
+        current["grade"] = new_grade.upper()
+
+    print("Updated.")
 
 def print_menu():
     print("\n=== Student Manager ===")
@@ -47,8 +90,12 @@ def handle_choice(choice):
         add_student()
     elif choice =="2":
         view_students()
+    elif choice == "3":
+        update_student()
+    elif choice == "4":
+        print("TODO: Delete student")
     else:
-        print(f"option '{choice}' not implemented yet")
+        print("Invalid choice")
 
 def main():
     while True:
