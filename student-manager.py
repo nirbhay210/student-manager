@@ -23,6 +23,17 @@ def add_student():
     print(f"Added student #{next_id}: {name}")
     next_id +=1
 
+def view_students():
+    if not students:
+        print("No students yet.")
+        return
+    print("\nID. | Name                 |  Age  |  Grade")
+    print("-----------------------------------------------")
+    for s in students:
+        print(f"{s['id']:<3} | {s['name']:<20} | {s['age']:<3} | {s['grade']}")
+
+
+
 def print_menu():
     print("\n=== Student Manager ===")
     print("1. Add Student")
@@ -34,6 +45,8 @@ def print_menu():
 def handle_choice(choice):
     if choice == "1":
         add_student()
+    elif choice =="2":
+        view_students()
     else:
         print(f"option '{choice}' not implemented yet")
 
